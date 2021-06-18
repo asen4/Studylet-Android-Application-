@@ -1,0 +1,183 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CommentsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/commentsCardView"
+                android:layout_margin="15dp"
+                android:translationZ="25dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/relativeLayout">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/commentsPostName"
+                            android:layout_alignParentEnd="true"
+                            android:layout_margin="25dp"
+                            tools:text="Name" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginTop="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:orientation="horizontal">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:id="@+id/commentsPostProfileImage"
+                                    android:src="@drawable/ic_baseline_person_60"
+                                    android:scaleType="centerCrop" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/commentsPostTitle"
+                                        tools:text="Post Title"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_marginTop="8dp"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        android:textColor="@android:color/black" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/commentsPostDateAndTime"
+                                        tools:text="Date/Time"
+                                        android:layout_marginStart="5dp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/commentsPostDescription"
+                                tools:text="Post Description"
+                                android:textSize="14sp"
+                                android:textColor="@android:color/black"
+                                android:layout_marginStart="3dp"
+                                android:layout_marginEnd="3dp"
+                                android:padding="3dp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:id="@+id/commentsPostImage"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hideShowPostButton"
+                        android:layout_below="@id/relativeLayout"
+                        android:text="Hide"
+                        android:backgroundTint="@color/colorTurquoise"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/commentsList"
+                android:layout_marginBottom="70dp"
+                android:layout_below="@id/commentsCardView" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/writeCommentsLayout"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:background="@android:color/white">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textInputComment"
+            app:hintTextColor="@color/colorTurquoise"
+            app:boxStrokeColor="@color/colorTurquoise"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_toStartOf="@id/sendCommentButton"
+            android:layout_marginEnd="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type your comment"
+                android:padding="10dp"
+                android:layout_marginStart="5dp"
+                android:textSize="16sp"
+                android:textCursorDrawable="@null" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendCommentButton"
+            android:background="@drawable/gray_round_button"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_send_24" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

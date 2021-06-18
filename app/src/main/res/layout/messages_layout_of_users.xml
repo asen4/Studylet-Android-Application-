@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/messagesDividerLine"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/receiverMessageTimeSent"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:textSize="12sp"
+            android:layout_toEndOf="@id/receiverMessageContainer" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/receiverMessageContainer"
+            android:background="@drawable/incoming_speech_bubble">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:id="@+id/receiverMessageImage"
+                android:scaleType="centerCrop"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/receiverMessageText"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/messagesDividerLine"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="50dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/senderMessageContainer"
+            android:layout_toEndOf="@id/senderMessageTimeSent"
+            android:background="@drawable/outgoing_speech_bubble">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:id="@+id/senderMessageImage"
+                android:scaleType="centerCrop"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/senderMessageText"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/senderMessageTimeSent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/messagesDividerLine"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:background="@drawable/date_header"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+</RelativeLayout>

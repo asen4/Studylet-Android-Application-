@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PersonProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/personProfileHeader">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personProfileBackBtn"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:background="?android:attr/actionBarItemBackground"
+            style="@style/SelectableItemBackground" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/personProfileHeader">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/personProfileImage"
+                android:src="@drawable/ic_baseline_person_75"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profHeader"
+                    app:cardCornerRadius="25dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="25dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/personProfileFullName"
+                            tools:text="Name"
+                            android:textSize="20sp"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="35dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/credentialsLayout"
+                            android:layout_marginTop="6dp"
+                            android:layout_below="@id/personProfileFullName"
+                            android:layout_centerHorizontal="true">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/personProfilePhoneNumber"
+                                tools:text="Phone Number"
+                                android:layout_marginEnd="10dp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="#808080"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/personProfileEmailAddress"
+                                tools:text="Email Address"
+                                android:layout_marginStart="10dp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/personProfileStatus"
+                            tools:text="Profile Status"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:textAlignment="center"
+                            android:layout_below="@id/credentialsLayout"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="25dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:id="@+id/personProfileBorder"
+                            android:background="#E0E0E0"
+                            android:layout_below="@id/personProfileStatus" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/friends"
+                            android:text="Friends"
+                            android:textSize="18sp"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_below="@id/personProfileBorder" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/personProfileListOfFriends"
+                            android:orientation="horizontal"
+                            android:layout_below="@id/friends" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:id="@+id/personProfileBorder2"
+                            android:background="#E0E0E0"
+                            android:layout_below="@id/personProfileListOfFriends"
+                            android:layout_marginTop="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/posts"
+                            android:text="Posts"
+                            android:textSize="18sp"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_below="@id/personProfileBorder2" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/personProfileListOfPosts"
+                            android:layout_below="@id/posts" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

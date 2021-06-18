@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClickPostActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/colorLightBlue"
+        android:id="@+id/clickPostHeader">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/clickPostBackButton"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:background="?android:attr/actionBarItemBackground"
+            style="@style/SelectableItemBackground" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Modify Post"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/clickPostHeader">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/clickPostCardView"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:id="@+id/clickPostPicture"
+                    android:src="@drawable/ic_baseline_image_150"
+                    android:scaleType="centerCrop" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/clickPostTitle"
+                tools:text="Post Title"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_below="@id/clickPostCardView"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp" />
+
+            <TextView
+                android:id="@+id/clickPostDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Post Description"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_below="@id/clickPostTitle"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/clickPostDescription"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/clickPostCancelButton"
+                    android:text="Back"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTurquoise"
+                    android:backgroundTint="@android:color/white"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/editPostButton"
+                    android:text="Edit"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/colorTurquoise"
+                    android:layout_marginEnd="15dp"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/deletePostButton"
+                    android:text="Delete"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@android:color/holo_red_light"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SettingsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/settingsHeader"
+        android:background="@color/colorLightBlue">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/settingsHeaderProfileImage"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_person_white_30"
+            android:paddingTop="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Settings"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settingsHeader"
+        android:layout_margin="15dp"
+        android:translationZ="25dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cirLogoutButton"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="Logout"
+            android:layout_margin="10dp"
+            android:paddingStart="45dp"
+            android:paddingEnd="45dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_gravity="center_horizontal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personProfileBtn"
+            android:text="Person Profile" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

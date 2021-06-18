@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetupActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topContainer"
+        android:background="@color/colorLightBlue"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:text="Finish \nsetting up \nyour \naccount"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_login_hero"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topContainer">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="25dp">
+
+            <LinearLayout
+                android:id="@+id/inputPhoneNumberLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/submitPhoneNumberButton"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_background_gray"
+                    android:text="Submit"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="25dp">
+
+            <LinearLayout
+                android:id="@+id/inputCodeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Please enter the code that was sent to the given phone number"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/editTextVerificatoinCode"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/messages_edittext"
+                    android:drawableStart="@drawable/ic_baseline_lock_24"
+                    android:drawablePadding="15dp"
+                    android:hint="Code"
+                    android:inputType="phone"
+                    android:maxLength="6"
+                    android:paddingStart="15dp"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/submitCodeButton"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/button_background_gray"
+                    android:text="Submit"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="25dp"
+            android:translationZ="25dp">
+
+            <LinearLayout
+                android:id="@+id/inputProfileImageLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="If you want, choose your profile image by clicking on the icon"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/setupProfileImage"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:src="@drawable/ic_baseline_person_black_250" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/notNowProfileImageButton"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/colorTurquoise"
+                    android:text="Not Now"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:paddingStart="45dp"
+                    android:paddingEnd="45dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="25dp"
+            android:translationZ="25dp">
+
+            <LinearLayout
+                android:id="@+id/inputOtherCredentialsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputSetupUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="8"
+                    app:boxStrokeColor="@color/colorTurquoise"
+                    app:hintTextColor="@color/colorTurquoise"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextSetupUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_baseline_person_black_24"
+                        android:drawablePadding="15dp"
+                        android:hint="Username"
+                        android:inputType="textShortMessage"
+                        android:maxLength="8"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputSetupFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:hintTextColor="@color/colorTurquoise"
+                    app:boxStrokeColor="@color/colorTurquoise"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextSetupFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                        android:drawableStart="@drawable/ic_baseline_face_24"
+                        android:drawablePadding="15dp"
+                        android:hint="First Name"
+                        android:inputType="textFilter"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputSetupLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    app:hintTextColor="@color/colorTurquoise"
+                    app:boxStrokeColor="@color/colorTurquoise"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextSetupLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                        android:drawableStart="@drawable/ic_baseline_face_24"
+                        android:drawablePadding="15dp"
+                        android:hint="Last Name"
+                        android:inputType="textFilter"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textCursorDrawable="@null"
+                        android:textSize="15sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/countryCodePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#F5F5F5"
+                        app:ccp_defaultNameCode="US" />
+
+                    <EditText
+                        android:id="@+id/phoneText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rectangular_edittext"
+                        android:textSize="16sp"
+                        android:hint="Phone Number"
+                        android:inputType="phone"
+                        android:singleLine="true"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/saveCredentialsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:backgroundTint="@color/colorGray"
+                    android:text="Save"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:paddingStart="45dp"
+                    android:paddingEnd="45dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

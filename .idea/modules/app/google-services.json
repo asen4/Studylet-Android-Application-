@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "74404577291",
+    "project_id": "studylet",
+    "storage_bucket": "studylet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74404577291:android:f99524ae0ced9c138bc70e",
+        "android_client_info": {
+          "package_name": "com.example.studyletapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74404577291-3kph9271n510tjhdqu1nvb1ivuf9f6e8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studyletapplication",
+            "certificate_hash": "716570bdde60d2b05c3a1a084801cfaca3acdc79"
+          }
+        },
+        {
+          "client_id": "74404577291-k6qjpt66hp0qpe7s1aubm94eubtepfgc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBxkzikdsNfG5ULxGlRI_jRQl_Tmh5AtY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74404577291-k6qjpt66hp0qpe7s1aubm94eubtepfgc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

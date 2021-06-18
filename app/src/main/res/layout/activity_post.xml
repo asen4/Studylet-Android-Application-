@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/colorLightBlue"
+        android:id="@+id/postHeader">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/postBackBtn"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:background="?android:attr/actionBarItemBackground"
+            style="@style/SelectableItemBackground" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Create New Post"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/postHeader">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/postCardView"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:id="@+id/postPicture"
+                    android:src="@drawable/ic_baseline_image_150"
+                    android:background="?android:attr/actionBarItemBackground"
+                    android:scaleType="centerCrop" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/postTextInputLayout"
+                android:layout_below="@id/postCardView"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:endIconMode="clear_text"
+                app:counterEnabled="true"
+                app:counterMaxLength="25">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/postTitle"
+                    android:hint="Post Title"
+                    android:maxLength="25"
+                    android:inputType="textCapWords"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textInputPostMessage"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/postTextInputLayout"
+                app:hintTextColor="@color/colorTurquoise"
+                app:boxStrokeColor="@color/colorTurquoise"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:counterEnabled="true"
+                app:counterMaxLength="250">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Add a post description..."
+                    android:inputType="textMultiLine"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:layout_margin="15dp"
+                    android:maxLength="250" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postButton"
+                android:text="Post"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/colorGray"
+                android:layout_below="@id/textInputPostMessage"
+                android:layout_alignParentEnd="true"
+                android:paddingStart="35dp"
+                android:paddingEnd="35dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_margin="15dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postCancelButton"
+                android:text="Cancel"
+                android:textStyle="bold"
+                android:textColor="@color/colorTurquoise"
+                android:backgroundTint="@android:color/white"
+                android:layout_below="@id/textInputPostMessage"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_toStartOf="@id/postButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

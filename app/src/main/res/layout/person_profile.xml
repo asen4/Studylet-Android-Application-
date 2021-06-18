@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personProfileCancelBtn"
+            android:src="@drawable/ic_clear_black_24dp"
+            android:background="@android:color/transparent"
+            android:layout_margin="15dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="62.5dp"
+            android:layout_height="62.5dp"
+            android:id="@+id/personProfileImage"
+            android:src="@drawable/ic_baseline_person_black_24"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:translationZ="100dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/personProfileCancelBtn"
+            app:cardCornerRadius="25dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/personProfileName"
+                    android:text="Name"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/emailPhoneLinearLayout"
+                    android:layout_marginTop="6dp"
+                    android:layout_below="@id/personProfileName"
+                    android:layout_centerHorizontal="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/phoneNumber"
+                        android:text="Phone Number"
+                        android:layout_marginEnd="10dp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#808080"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/emailAddress"
+                        android:text="Email Address"
+                        android:layout_marginStart="10dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profileStatus"
+                    android:text="Profile Status"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:layout_below="@id/emailPhoneLinearLayout"
+                    android:layout_marginTop="25dp"
+                    android:layout_centerHorizontal="true" />
+
+                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sendOrDeclineFriendRequestBtn"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/profileStatus"
+                    android:text="Send Request"
+                    android:background="@drawable/button_background_green"
+                    android:drawableStart="@drawable/ic_baseline_send_24"
+                    android:drawablePadding="15dp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:layout_marginTop="30dp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MessagesActivity"
+    android:background="#F5F5F5">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp"
+        android:background="@color/colorLightBlue"
+        android:id="@+id/messagesHeader">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/messagesBackBtn"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:background="?android:attr/actionBarItemBackground"
+            style="@style/SelectableItemBackground"
+            android:layout_centerVertical="true" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/messagesProfileImage"
+            android:src="@drawable/ic_baseline_person_white_30"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/messagesBackBtn"
+            android:layout_marginStart="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/messagesFullName"
+                tools:text="Full Name"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/messagesLastSeen"
+                android:layout_below="@id/messagesFullName"
+                tools:text="Last Active"
+                android:textSize="14sp"
+                android:textColor="@android:color/white" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/messagesLoadingBar"
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:indeterminateTint="#03A9F4"
+        android:layout_below="@id/messagesHeader" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/messagesListOfUsers"
+        android:layout_above="@id/myRelativeLayout"
+        android:layout_below="@id/messagesLoadingBar"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/myRelativeLayout"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:background="@android:color/white">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addFileBtn"
+            android:background="@drawable/hot_pink_round_button"
+            android:src="@drawable/ic_baseline_add_24"
+            android:padding="8dp"
+            android:layout_centerVertical="true" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textInputMessage"
+            app:hintTextColor="@color/colorTurquoise"
+            app:boxStrokeColor="@color/colorTurquoise"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_toEndOf="@id/addFileBtn"
+            android:layout_toStartOf="@id/sendMessageBtn"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type your message"
+                android:padding="10dp"
+                android:layout_marginStart="5dp"
+                android:textSize="16sp"
+                android:textCursorDrawable="@null" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendMessageBtn"
+            android:background="@drawable/gray_round_button"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_send_24" />
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addFileOptions"
+                android:numColumns="3"
+                android:visibility="gone"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/backBtn"
+                android:visibility="gone"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="Back"
+                android:textColor="#03A9F4"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

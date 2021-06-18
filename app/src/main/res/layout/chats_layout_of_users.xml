@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?android:attr/selectableItemBackground">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/dividerLine"
+        android:background="#E0E0E0"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dividerLine"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:id="@+id/all_users_profile_image"
+            android:src="@drawable/ic_baseline_person_black_250" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/ic_all_users_online"
+            android:src="@drawable/ic_baseline_brightness_1_24"
+            android:visibility="invisible"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/all_users_profile_image"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="35dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/all_users_full_name"
+                tools:text="User Full Name"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/all_users_status"
+                android:text="Start chatting..."
+                android:textAlignment="textStart"
+                android:textSize="16sp"
+                android:layout_marginTop="3dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
