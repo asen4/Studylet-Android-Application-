@@ -86,7 +86,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
 
                 else
                     commentsViewHolder.dateAndTime.setText(comment.getDate());
-
             }
 
             catch (ParseException e) {

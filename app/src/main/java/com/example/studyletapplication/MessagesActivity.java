@@ -305,6 +305,7 @@ public class MessagesActivity extends AppCompatActivity {
         mUsersReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         userMessageET = findViewById(R.id.inputMessage);
+        userMessageET.setMaxHeight(150);
 
         receiverProfileImageCIV = findViewById(R.id.messagesProfileImage);
         receiverNameTV = findViewById(R.id.messagesFullName);
@@ -372,14 +373,6 @@ public class MessagesActivity extends AppCompatActivity {
                 else {
                     sendMessageButton.setBackground(getResources().getDrawable(R.drawable.round_button));
                     sendMessageButton.setEnabled(true);
-                }
-
-                int height = userMessageET.getHeight();
-
-                if (height >= 200) {
-                    userMessageET.setHeight(200);
-                    userMessageET.setVerticalScrollBarEnabled(true);
-                    userMessageET.setMovementMethod(new ScrollingMovementMethod());
                 }
             }
 

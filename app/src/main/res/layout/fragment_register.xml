@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_register"
-    android:focusableInTouchMode="true"
-    android:layout_gravity="center">
+    android:focusableInTouchMode="true">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,7 +39,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_login_hero"
+                    android:src="@drawable/ic_baseline_people_100"
                     android:layout_alignParentEnd="true"/>
 
             </RelativeLayout>
@@ -71,17 +70,6 @@
                         android:backgroundTint="#ffffff"
                         android:drawableStart="@drawable/resize_google_icon"
                         android:text="Continue with Google" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/FacebookBtnLogin"
-                        android:layout_width="fill_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="25dp"
-                        android:backgroundTint="#3B5998"
-                        android:drawableStart="@drawable/resize_facebook_icon"
-                        android:text="Continue with Facebook"
-                        android:textColor="#ffffff" />
 
                 </LinearLayout>
 

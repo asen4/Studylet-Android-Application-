@@ -135,7 +135,7 @@ public class FindOtherPeopleActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String visitUserID = getRef(position).getKey();
-                        Intent popupIntent = new Intent(FindOtherPeopleActivity.this, PopupActivity.class);
+                        Intent popupIntent = new Intent(FindOtherPeopleActivity.this, PersonProfileActivity.class);
                         popupIntent.putExtra("visitUserID", visitUserID);
                         startActivity(popupIntent);
                     }
@@ -181,24 +181,46 @@ public class FindOtherPeopleActivity extends AppCompatActivity {
                                         findPeopleViewHolder.sendOrCancelFriendRequestBtn.setBackground(getResources().getDrawable(R.drawable.button_background_green));
                                         findPeopleViewHolder.sendOrCancelFriendRequestBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_check_12, 0, 0, 0);
                                     }
+
+                                    else {
+                                        mFriendsReference.child(senderUserID)
+                                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        if (dataSnapshot.hasChild(getRef(position).getKey())) {
+                                                            currentState = "friends";
+                                                            findPeopleViewHolder.sendOrCancelFriendRequestBtn.setText("Unfriend?");
+                                                            findPeopleViewHolder.sendOrCancelFriendRequestBtn.setBackground(getResources().getDrawable(R.drawable.button_background_red));
+                                                            findPeopleViewHolder.sendOrCancelFriendRequestBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_clear_12, 0, 0, 0);
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
+                                                });
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
+                                else {
+                                    mFriendsReference.child(senderUserID)
+                                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    if (dataSnapshot.hasChild(getRef(position).getKey())) {
+                                                        currentState = "friends";
+                                                        findPeopleViewHolder.sendOrCancelFriendRequestBtn.setText("Unfriend?");
+                                                        findPeopleViewHolder.sendOrCancelFriendRequestBtn.setBackground(getResources().getDrawable(R.drawable.button_background_red));
+                                                        findPeopleViewHolder.sendOrCancelFriendRequestBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_clear_12, 0, 0, 0);
+                                                    }
+                                                }
 
-                            }
-                        });
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
 
-                mFriendsReference.child(senderUserID)
-                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.hasChild(getRef(position).getKey())) {
-                                    currentState = "friends";
-                                    findPeopleViewHolder.sendOrCancelFriendRequestBtn.setText("Unfriend?");
-                                    findPeopleViewHolder.sendOrCancelFriendRequestBtn.setBackground(getResources().getDrawable(R.drawable.button_background_red));
-                                    findPeopleViewHolder.sendOrCancelFriendRequestBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_clear_12, 0, 0, 0);
+                                                }
+                                            });
                                 }
                             }
 
@@ -304,12 +326,12 @@ public class FindOtherPeopleActivity extends AppCompatActivity {
             }
         });
 
-        mFriendsReference.child(senderUserID).child(receiverUserID).child("firstName").setValue(senderFirstName)
+        mFriendsReference.child(senderUserID).child(receiverUserID).child("date").setValue(saveCurrentDate)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            mFriendsReference.child(receiverUserID).child(senderUserID).child("firstName").setValue(receiverFirstName)
+                            mFriendsReference.child(receiverUserID).child(senderUserID).child("date").setValue(saveCurrentDate)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -320,7 +342,7 @@ public class FindOtherPeopleActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if (task.isSuccessful()) {
-                                                                    mFriendRequestsReference.child(senderUserID).child(receiverUserID)
+                                                                    mFriendRequestsReference.child(receiverUserID).child(senderUserID)
                                                                             .removeValue()
                                                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                 @Override
@@ -342,6 +364,8 @@ public class FindOtherPeopleActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+        sendUserToMainActivity();
     }
 
     private void unfriendAnExistingFriend(final FindPeopleViewHolder findPeopleViewHolder) {
@@ -395,5 +419,12 @@ public class FindOtherPeopleActivity extends AppCompatActivity {
             personFullName = itemView.findViewById(R.id.allUsersFullName);
             personUsername = itemView.findViewById(R.id.allUsernames);
         }
+    }
+
+    private void sendUserToMainActivity() {
+        Intent mainIntent = new Intent(FindOtherPeopleActivity.this, MainActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(mainIntent);
+        finish();
     }
 }

@@ -24,7 +24,7 @@
     </style>
 
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">#FFC324</item>
+        <item name="colorPrimary">@android:color/holo_blue_dark</item>
     </style>
 
     <style name="SelectableItemBackground">

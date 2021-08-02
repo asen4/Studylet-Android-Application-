@@ -38,8 +38,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
-
 public class RegisterFragment extends Fragment {
 
     private boolean mCheckpointEmailAddress, mCheckpointPassword, mCheckpointConfirmPassword;
@@ -152,7 +150,7 @@ public class RegisterFragment extends Fragment {
 
                 else if (s.toString().length() < 8) {
                     mTextInputLayoutPassword.setErrorEnabled(true);
-                    mTextInputLayoutPassword.setError("Your password is too short! The minimum length is 8 characters.");
+                    mTextInputLayoutPassword.setError("The minimum length is 8 characters.");
                     mCheckpointPassword = false;
                 }
 
@@ -209,15 +207,16 @@ public class RegisterFragment extends Fragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    if (getActivity() != null) {
+                                        if (validateEmail(mETEmailAddress) && mETPassword.length() >= 8 && mETConfirmPassword.length() >= 8 && mETPassword.equals(mETConfirmPassword)) {
+                                            mButtonRegister.setBackgroundTintList(getActivity().getColorStateList(R.color.colorTurquoise));
+                                            mButtonRegister.setEnabled(true);
+                                        }
 
-                                    if (validateEmail(mETEmailAddress) && mETPassword.length() >= 8 && mETConfirmPassword.length() >= 8 && mETPassword.equals(mETConfirmPassword)) {
-                                        mButtonRegister.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.colorTurquoise));
-                                        mButtonRegister.setEnabled(true);
-                                    }
-
-                                    else {
-                                        mButtonRegister.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.colorGray));
-                                        mButtonRegister.setEnabled(false);
+                                        else {
+                                            mButtonRegister.setBackgroundTintList(getActivity().getColorStateList(R.color.colorGray));
+                                            mButtonRegister.setEnabled(false);
+                                        }
                                     }
                                 }
                             });
@@ -320,7 +319,7 @@ public class RegisterFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            loadingBar.setTitle("Google Sign In");
+            loadingBar.setTitle("Signing in...");
             loadingBar.setMessage("Please wait while we are processing your request.");
             loadingBar.setCanceledOnTouchOutside(true);
             loadingBar.show();

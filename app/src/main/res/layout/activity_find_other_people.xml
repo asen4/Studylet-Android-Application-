@@ -68,8 +68,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/listOfPeople"
         android:layout_below="@id/textInputSetupSearchPeople"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="50dp" />
+        android:layout_marginTop="5dp" />
 
     <TextView
         android:layout_width="wrap_content"

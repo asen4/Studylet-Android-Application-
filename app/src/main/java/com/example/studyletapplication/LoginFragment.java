@@ -33,8 +33,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
-
 public class LoginFragment extends Fragment {
 
     private AppCompatButton mGoogleSignInButton;
@@ -65,7 +63,7 @@ public class LoginFragment extends Fragment {
                 String emailAddress = mEditTextEmailAddress.getText().toString().trim();
                 String password = mEditTextPassword.getText().toString().trim();
 
-                loadingBar.setTitle("Logging Into Your Account");
+                loadingBar.setTitle("Logging in...");
                 loadingBar.setMessage("Please wait while we are processing your request.");
                 loadingBar.setCanceledOnTouchOutside(false);
                 loadingBar.show();
@@ -107,14 +105,17 @@ public class LoginFragment extends Fragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    if (!mETUsername.isEmpty() && !mETPassword.isEmpty()) {
-                                        mButtonLogin.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.colorTurquoise));
-                                        mButtonLogin.setEnabled(true);
-                                    } else {
-                                        mButtonLogin.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.colorGray));
-                                        mButtonLogin.setEnabled(false);
-                                    }
+                                    if (getActivity() != null) {
+                                        if (!mETUsername.isEmpty() && !mETPassword.isEmpty()) {
+                                            mButtonLogin.setBackgroundTintList(getActivity().getColorStateList(R.color.colorTurquoise));
+                                            mButtonLogin.setEnabled(true);
+                                        }
 
+                                        else {
+                                            mButtonLogin.setBackgroundTintList(getActivity().getColorStateList(R.color.colorGray));
+                                            mButtonLogin.setEnabled(false);
+                                        }
+                                    }
                                 }
                             });
                         }
@@ -202,9 +203,11 @@ public class LoginFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            loadingBar.setTitle("Google Sign In");
+            loadingBar.setTitle("Signing in...");
             loadingBar.setMessage("Please wait while we are processing your request.");
             loadingBar.show();
+
+
 
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
@@ -214,6 +217,7 @@ public class LoginFragment extends Fragment {
             }
 
             else {
+                // TODO: Fix SHA1 certificate authorization
                 Toast.makeText(getActivity(), "Error! Please try again later!", Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
             }

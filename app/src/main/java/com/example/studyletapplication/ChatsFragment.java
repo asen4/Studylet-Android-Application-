@@ -6,19 +6,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.TextWatcher;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -49,7 +45,6 @@ public class ChatsFragment extends Fragment {
     private DatabaseReference mUsersReference, mMessagesReference, mFriendsReference;
 
     private CircleImageView chatsHeaderProfileImage;
-    private EditText searchBar;
     private FloatingActionButton findOtherPeopleBtn;
     private ProgressBar loadingBar;
     private RecyclerView listOfFriends;
@@ -64,29 +59,6 @@ public class ChatsFragment extends Fragment {
         initializeVariables(view);
 
         searchForFriends();
-
-        /*
-
-        mobileScreenShareButton = (FloatingActionButton) view.findViewById(R.id.mobileScreenShareBtn);
-        mobileScreenShareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent("android.settings.CAST_SETTINGS"));
-            }
-        });
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mobileScreenShareBtn"
-        android:src="@drawable/ic_baseline_cast_24"
-        android:backgroundTint="@color/colorHotPink"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="75dp"
-        android:layout_marginEnd="25dp" />
-
-         */
 
         return view;
     }
@@ -105,14 +77,11 @@ public class ChatsFragment extends Fragment {
         mFriendsReference = FirebaseDatabase.getInstance().getReference().child("Friends");
 
         chatsHeaderProfileImage = view.findViewById(R.id.chatsHeaderProfileImage);
-        searchBar = view.findViewById(R.id.editTextSetupSearchBar);
         findOtherPeopleBtn = view.findViewById(R.id.chatsFindOtherPeople);
         noResultsFound = view.findViewById(R.id.chatsNoResultsFound);
         loadingBar = view.findViewById(R.id.chatsLoadingBar);
 
         listOfFriends = view.findViewById(R.id.listOfFriends);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
-        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider));
         listOfFriends.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mUsersReference.child(currentUserID).addValueEventListener(new ValueEventListener() {
@@ -138,51 +107,25 @@ public class ChatsFragment extends Fragment {
                 sendUserToFindOtherPeopleActivity();
             }
         });
-
-        searchBar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchForFriends();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
     private void searchForFriends() {
-        FirebaseRecyclerOptions<FindFriends> findFriendsFirebaseRecyclerOptions;
+        FirebaseRecyclerOptions<FindFriends> findFriendsFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<FindFriends>()
+                .setQuery(mFriendsReference.child(currentUserID), FindFriends.class)
+                .build();
 
-        if (searchBar.getText().toString().equals("")) {
-            findFriendsFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<FindFriends>()
-                    .setQuery(mUsersReference, FindFriends.class)
-                    .build();
-        }
-
-        else {
-            findFriendsFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<FindFriends>()
-                    .setQuery(mUsersReference.orderByChild("firstName").startAt(searchBar.getText().toString()).endAt(searchBar.getText().toString() + "\uf8ff"), FindFriends.class)
-                    .build();
-        }
-
-        Query searchFriendsQuery = mUsersReference.orderByChild("firstName")
-                .startAt(searchBar.getText().toString()).endAt(searchBar.getText().toString() + "\uf8ff");
-
-        searchFriendsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        mFriendsReference.child(currentUserID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists())
+                if (dataSnapshot.exists()) {
                     noResultsFound.setVisibility(View.GONE);
+                    loadingBar.setVisibility(View.GONE);
+                }
 
-                else
+                else {
                     noResultsFound.setVisibility(View.VISIBLE);
+                    loadingBar.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -198,30 +141,18 @@ public class ChatsFragment extends Fragment {
                 final String receiverUserID = getRef(position).getKey();
 
                 if (! currentUserID.equals(receiverUserID)) {
-                    mFriendsReference.addValueEventListener(new ValueEventListener() {
+                    mUsersReference.child(receiverUserID).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.hasChild(currentUserID)) {
-                                if (! dataSnapshot.child(currentUserID).hasChild(receiverUserID)) {
-                                    ViewGroup.LayoutParams layoutParams = findFriendsViewHolder.itemView.getLayoutParams();
-                                    layoutParams.height = 0;
-                                    layoutParams.width = 0;
-                                    findFriendsViewHolder.itemView.setLayoutParams(layoutParams);
-                                }
+                            if (dataSnapshot.exists()) {
+                                String firstName = dataSnapshot.child("firstName").getValue().toString();
+                                String lastName = dataSnapshot.child("lastName").getValue().toString();
+                                String displayName = firstName + " " + lastName;
+                                findFriendsViewHolder.friendFullName.setText(displayName);
 
-                                else {
-                                    findFriendsViewHolder.friendFullName.setText(findFriends.getFirstName() + " " + findFriends.getLastName());
-
-                                    if (! findFriends.getProfileImage().equals("-1"))
-                                        Picasso.get().load(findFriends.getProfileImage()).placeholder(R.drawable.ic_baseline_person_black_250).into(findFriendsViewHolder.friendProfileImage);
-                                }
-                            }
-
-                            else {
-                                ViewGroup.LayoutParams layoutParams = findFriendsViewHolder.itemView.getLayoutParams();
-                                layoutParams.height = 0;
-                                layoutParams.width = 0;
-                                findFriendsViewHolder.itemView.setLayoutParams(layoutParams);
+                                String profileImage = dataSnapshot.child("profileImage").getValue().toString();
+                                if (! profileImage.equals("-1"))
+                                    Picasso.get().load(profileImage).placeholder(R.drawable.ic_baseline_person_black_250).into(findFriendsViewHolder.friendProfileImage);
                             }
                         }
 
@@ -233,10 +164,8 @@ public class ChatsFragment extends Fragment {
                 }
 
                 else {
-                    ViewGroup.LayoutParams layoutParams = findFriendsViewHolder.itemView.getLayoutParams();
-                    layoutParams.height = 0;
-                    layoutParams.width = 0;
-                    findFriendsViewHolder.itemView.setLayoutParams(layoutParams);
+                    findFriendsViewHolder.itemView.setVisibility(View.GONE);
+                    findFriendsViewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
                 }
 
                 findFriendsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -280,10 +209,21 @@ public class ChatsFragment extends Fragment {
 
                             if (from.equals(currentUserID)) {
                                 if (type.equals("text")) {
-                                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(introMessage + message);
-                                    StyleSpan boldStyle = new StyleSpan(Typeface.BOLD);
-                                    spannableStringBuilder.setSpan(boldStyle, 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                                    findFriendsViewHolder.friendProfileStatus.setText(spannableStringBuilder);
+                                    if ((introMessage + message).length() >= 58) {
+                                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(introMessage);
+                                        StyleSpan boldStyle = new StyleSpan(Typeface.BOLD);
+                                        spannableStringBuilder.setSpan(boldStyle, 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                                        spannableStringBuilder.append(message.substring(0, 58));
+                                        spannableStringBuilder.append("...");
+                                        findFriendsViewHolder.friendProfileStatus.setText(spannableStringBuilder);
+                                    }
+
+                                    else {
+                                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(introMessage + message);
+                                        StyleSpan boldStyle = new StyleSpan(Typeface.BOLD);
+                                        spannableStringBuilder.setSpan(boldStyle, 0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                                        findFriendsViewHolder.friendProfileStatus.setText(spannableStringBuilder);
+                                    }
                                 }
 
                                 else if (type.equals("image")) {
@@ -310,10 +250,21 @@ public class ChatsFragment extends Fragment {
                                         String introMessage = firstName + " " + lastName + ": ";
 
                                         if (type.equals("text")) {
-                                            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(introMessage + message);
-                                            StyleSpan boldStyle = new StyleSpan(Typeface.BOLD);
-                                            spannableStringBuilder.setSpan(boldStyle, 0, introMessage.indexOf(":"), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                                            findFriendsViewHolder.friendProfileStatus.setText(spannableStringBuilder);
+                                            if ((introMessage + message).length() >= 50) {
+                                                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(introMessage);
+                                                StyleSpan boldStyle = new StyleSpan(Typeface.BOLD);
+                                                spannableStringBuilder.setSpan(boldStyle, 0, introMessage.indexOf(":"), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                                                spannableStringBuilder.append(message.substring(0, 50));
+                                                spannableStringBuilder.append("...");
+                                                findFriendsViewHolder.friendProfileStatus.setText(spannableStringBuilder);
+                                            }
+
+                                            else {
+                                                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(introMessage + message);
+                                                StyleSpan boldStyle = new StyleSpan(Typeface.BOLD);
+                                                spannableStringBuilder.setSpan(boldStyle, 0, introMessage.indexOf(":"), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                                                findFriendsViewHolder.friendProfileStatus.setText(spannableStringBuilder);
+                                            }
                                         }
 
                                         else if (type.equals("image")) {

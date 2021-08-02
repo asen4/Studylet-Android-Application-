@@ -64,18 +64,9 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new ChatsFragment();
                             break;
 
-                        case R.id.nav_create_study_sets:
-                            selectedFragment = new CreateStudySetsFragment();
-                            break;
-
-                        case R.id.nav_notes:
-                            selectedFragment = new NotesFragment();
-                            break;
-
                         case R.id.nav_settings:
                             selectedFragment = new SettingsFragment();
                             break;
-
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_container,
@@ -127,23 +118,5 @@ public class MainActivity extends AppCompatActivity {
         setupIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(setupIntent);
         finish();
-    }
-
-    public static class NotificationsViewHolder extends RecyclerView.ViewHolder {
-
-        TextView usernameText;
-        Button acceptBtn, cancelBtn;
-        ImageView profileImageView;
-        RelativeLayout cardView;
-
-        public NotificationsViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            usernameText = itemView.findViewById(R.id.nameNotification);
-            acceptBtn = itemView.findViewById(R.id.requestAcceptButton);
-            cancelBtn = itemView.findViewById(R.id.requestDeclineButton);
-            profileImageView = itemView.findViewById(R.id.imageNotification);
-            cardView = itemView.findViewById(R.id.cardView);
-        }
     }
 }

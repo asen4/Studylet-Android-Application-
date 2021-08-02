@@ -34,7 +34,7 @@ import java.util.HashMap;
 public class PostActivity extends AppCompatActivity {
 
     private EditText postMessage, postTitle;
-    private ImageButton selectPostImage;
+    private ImageButton selectPostImage, backButton;
     private MaterialButton postButton, cancelButton;
     private ProgressDialog loadingBar;
 
@@ -93,9 +93,9 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void validatePostInformation() {
-        postDescription = postMessage.getText().toString();
+        postDescription = postMessage.getText().toString().trim();
 
-        loadingBar.setTitle("Creating New Post...");
+        loadingBar.setTitle("Posting...");
         loadingBar.setMessage("Please wait while we are processing your request.");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
@@ -173,9 +173,8 @@ public class PostActivity extends AppCompatActivity {
                         postMap.put("profileImage", profileImage);
                     }
 
-                    else {
+                    else
                         postMap.put("profileImage", "-1");
-                    }
 
                     mPostsReference.child(currentUserID + "|" + postUniqueName).updateChildren(postMap)
                             .addOnCompleteListener(new OnCompleteListener() {
@@ -215,6 +214,7 @@ public class PostActivity extends AppCompatActivity {
 
         selectPostImage = findViewById(R.id.postPicture);
         postButton = findViewById(R.id.postButton);
+        backButton = findViewById(R.id.postBackBtn);
         cancelButton = findViewById(R.id.postCancelButton);
         postTitle = findViewById(R.id.postTitle);
         postMessage = findViewById(R.id.editTextPost);
@@ -231,6 +231,13 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validatePostInformation();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 

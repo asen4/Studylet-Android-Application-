@@ -49,34 +49,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputSetupSearchBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="10dp"
-                app:hintTextColor="@color/colorTurquoise"
-                app:boxStrokeColor="@color/colorTurquoise"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextSetupSearchBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
-                    android:drawableStart="@drawable/ic_baseline_search_24"
-                    android:drawablePadding="6dp"
-                    android:hint="Search name"
-                    android:inputType="textCapWords"
-                    android:maxLines="1"
-                    android:padding="5dp"
-                    android:textCursorDrawable="@null"
-                    android:textSize="15sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/chatsHeader">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -84,17 +58,15 @@
                 android:scrollbars="vertical"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="50dp"
-                android:id="@+id/listOfFriends"
-                android:layout_below="@id/textInputSetupSearchBar" />
+                android:id="@+id/listOfFriends" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/chatsNoResultsFound"
-                android:text="No results found"
+                android:text="You don't have any friends yet"
                 android:textSize="16sp"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/textInputSetupSearchBar"
                 android:layout_marginTop="100dp"
                 android:visibility="gone" />
 

@@ -51,7 +51,7 @@
                 android:id="@+id/all_comments"
                 tools:text="Comment"
                 android:textSize="14sp"
-                android:textAlignment="textStart" />
+                android:layout_marginTop="2dp" />
 
         </LinearLayout>
 

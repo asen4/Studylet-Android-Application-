@@ -28,9 +28,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     implementation 'com.hbb20:ccp:2.1.9'
-    implementation 'pub.devrel:easypermissions:0.4.0'
-
-    implementation 'com.github.mohammadatif:Animatoo:master' // for animations at the start of an activity
 
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
@@ -43,7 +40,7 @@ dependencies {
 
     implementation 'br.com.simplepass:loading-button-android:1.7.2'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+' // for cropping images
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     testImplementation 'junit:junit:4.12'

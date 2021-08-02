@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditPersonProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editPersonProfileHeader"
+            android:paddingTop="15dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorLightBlue">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editPersonProfileBackBtn"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:background="?android:attr/actionBarItemBackground"
+                style="@style/SelectableItemBackground" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Edit Profile"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myCardViewCredentialsLayout1"
+            android:layout_below="@id/editPersonProfileHeader"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="25dp"
+            android:translationZ="25dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editPersonProfileCredentials"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        android:id="@+id/editPersonProfileImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/ic_baseline_person_75"
+                        android:background="?android:attr/selectableItemBackground" />
+
+                    <ProgressBar
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:id="@+id/editPersonProfileLoadingBar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="25dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editPersonProfileNameLayout"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_below="@id/editPersonProfileImage"
+                        android:layout_centerVertical="true">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:id="@+id/textInputFirstName"
+                            android:layout_marginEnd="15dp"
+                            app:hintTextColor="@color/colorTurquoise"
+                            app:boxStrokeColor="@color/colorTurquoise"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="15"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editTextFirstName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="First Name"
+                                android:inputType="textPersonName"
+                                android:maxLength="15"
+                                android:maxLines="1"
+                                android:textCursorDrawable="@null"
+                                android:textSize="15sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:id="@+id/textInputLastName"
+                            app:hintTextColor="@color/colorTurquoise"
+                            app:boxStrokeColor="@color/colorTurquoise"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="15"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editTextLastName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:hint="Last Name"
+                                android:maxLength="15"
+                                android:maxLines="1"
+                                android:inputType="textPersonName"
+                                android:textCursorDrawable="@null" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myCardViewCredentialsLayout2"
+            android:layout_below="@id/myCardViewCredentialsLayout1"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="25dp"
+            android:translationZ="25dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputEditPersonProfileUsername"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="8"
+                    app:hintTextColor="@color/colorTurquoise"
+                    app:boxStrokeColor="@color/colorTurquoise"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:hint="Username"
+                        android:maxLength="8"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:drawableStart="@drawable/ic_baseline_person_24"
+                        android:drawablePadding="15dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textCursorDrawable="@null" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textInputEmailAddress"
+                    android:layout_below="@id/textInputEditPersonProfileUsername"
+                    app:hintTextColor="@color/colorTurquoise"
+                    app:boxStrokeColor="@color/colorTurquoise"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:helperTextEnabled="true"
+                    app:helperText="Email is not changeable">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:hint="Email Address"
+                        android:maxLines="1"
+                        android:inputType="textEmailAddress"
+                        android:drawableStart="@drawable/ic_baseline_email_24"
+                        android:drawablePadding="15dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textCursorDrawable="@null"
+                        android:focusable="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textInputEmailAddress"
+                    android:id="@+id/phoneNumberLayout"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/editPersonProfileCountryCodePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="52dp"
+                        android:background="@drawable/country_code_picker_border"
+                        app:ccp_defaultNameCode="US"
+                        android:layout_marginTop="6dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintTextColor="@color/colorTurquoise"
+                        app:boxStrokeColor="@color/colorTurquoise"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:hint="Phone Number"
+                            android:maxLines="1"
+                            android:inputType="phone"
+                            android:paddingStart="15dp"
+                            android:paddingEnd="15dp"
+                            android:textCursorDrawable="@null" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editPersonProfileStatusTIL"
+                    android:layout_below="@id/phoneNumberLayout"
+                    app:hintTextColor="@color/colorTurquoise"
+                    app:boxStrokeColor="@color/colorTurquoise"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_margin="15dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editPersonProfileStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:hint="Profile Status"
+                        android:maxLines="4"
+                        android:drawableStart="@drawable/ic_baseline_favorite_24"
+                        android:drawablePadding="15dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:textCursorDrawable="@null" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/myCardViewLayout"
+            android:layout_below="@id/myCardViewCredentialsLayout2"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="25dp"
+            android:translationZ="25dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cirSaveButton"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/colorTurquoise"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:text="Save"
+                android:layout_margin="15dp"
+                android:paddingStart="45dp"
+                android:paddingEnd="45dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</ScrollView>

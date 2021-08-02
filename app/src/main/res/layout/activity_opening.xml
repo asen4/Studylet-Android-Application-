@@ -6,22 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".OpeningActivity">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/openingImage"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_launcher_foreground"
-        android:background="@drawable/ic_launcher_background" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:textSize="36sp"
-        android:layout_below="@id/openingImage"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/openingImage"
+            android:src="@drawable/ic_baseline_front_hand_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="36sp"
+            android:layout_gravity="center_horizontal" />
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/openingLoadingBar"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:indeterminate="false"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:indeterminateTint="#03A9F4" />
+
+    </LinearLayout>
 
 </RelativeLayout>

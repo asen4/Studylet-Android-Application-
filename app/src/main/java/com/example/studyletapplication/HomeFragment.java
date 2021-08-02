@@ -46,6 +46,7 @@ public class HomeFragment extends Fragment {
     private FloatingActionButton fabAddNewPost;
     private DatabaseReference mUsersReference, mPostReference, mLikesReference, mDislikesReference;
     private ImageView homeHeaderProfileImage;
+    private TextView noPostsFoundMessage;
     private ProgressBar loadingBar;
     private RecyclerView postsList;
     private String currentUserID;
@@ -60,6 +61,26 @@ public class HomeFragment extends Fragment {
 
         displayAllUsersPosts();
 
+        mPostReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    noPostsFoundMessage.setVisibility(View.GONE);
+                    loadingBar.setVisibility(View.GONE);
+                }
+
+                else {
+                    noPostsFoundMessage.setVisibility(View.VISIBLE);
+                    loadingBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         return view;
     }
 
@@ -70,6 +91,8 @@ public class HomeFragment extends Fragment {
         mPostReference = FirebaseDatabase.getInstance().getReference().child("Posts");
         mLikesReference = FirebaseDatabase.getInstance().getReference().child("Likes");
         mDislikesReference = FirebaseDatabase.getInstance().getReference().child("Dislikes");
+
+        noPostsFoundMessage = view.findViewById(R.id.noPostsFound);
 
         postsList = view.findViewById(R.id.all_users_post_list);
         postsList.setHasFixedSize(true);
@@ -159,7 +182,6 @@ public class HomeFragment extends Fragment {
 
                         else
                             postsViewHolder.setDateAndTime(posts.getDate());
-
                     }
 
                     catch (ParseException e) {
@@ -184,10 +206,12 @@ public class HomeFragment extends Fragment {
                             String temp = firstName + " " + lastName;
                             String fullName = posts.getFirstName() + " " + posts.getLastName();
 
-                            if (temp.equals(fullName))
+                            if (temp.equals(fullName)) {
                                 postsViewHolder.setFullName("You");
-                            else
+                            }
+                            else {
                                 postsViewHolder.setFullName(posts.getFirstName() + " " + posts.getLastName());
+                            }
                         }
                     }
 
@@ -201,6 +225,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getActivity(), ImageViewerActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("URL", posts.getPostImage());
                         startActivity(intent);
                     }
@@ -332,12 +357,12 @@ public class HomeFragment extends Fragment {
 
     public static class PostsViewHolder extends RecyclerView.ViewHolder {
 
-        private LinearLayout linearLayoutLikePostButton, linearLayoutDislikePostButton, linearLayoutCommentPostButton;
-        private ImageView likeIcon, dislikeIcon, postImage;
-        private TextView displayNumberOfLikes, displayNumberOfDislikes;
-        private int countNumberOfLikes, countNumberOfDislikes;
-        private String currentUserID;
-        private DatabaseReference mLikesReference, mDislikesReference;
+        public LinearLayout linearLayoutLikePostButton, linearLayoutDislikePostButton, linearLayoutCommentPostButton;
+        public ImageView likeIcon, dislikeIcon, profileImage, postImage;
+        public TextView postName, displayNumberOfLikes, displayNumberOfDislikes;
+        public int countNumberOfLikes, countNumberOfDislikes;
+        public String currentUserID;
+        public DatabaseReference mLikesReference, mDislikesReference;
 
         public PostsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -349,6 +374,8 @@ public class HomeFragment extends Fragment {
             displayNumberOfDislikes = itemView.findViewById(R.id.displayNumberOfDislikes);
             likeIcon = itemView.findViewById(R.id.likeImageButton);
             dislikeIcon = itemView.findViewById(R.id.dislikeImageButton);
+            postName = itemView.findViewById(R.id.postName);
+            profileImage = itemView.findViewById(R.id.postProfileImage);
             postImage = itemView.findViewById(R.id.postImage);
 
             mLikesReference = FirebaseDatabase.getInstance().getReference().child("Likes");

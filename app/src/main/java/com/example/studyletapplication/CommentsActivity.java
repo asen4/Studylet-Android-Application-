@@ -13,6 +13,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -55,7 +57,7 @@ public class CommentsActivity extends AppCompatActivity {
 
     private RelativeLayout myRelativeLayout;
     private CircleImageView profileImage;
-    private ImageButton sendCommentButton;
+    private ImageButton sendCommentButton, backButton;
     private MaterialButton hideShowPostButton;
     private ImageView postImage;
     private RecyclerView commentsListRV;
@@ -91,12 +93,21 @@ public class CommentsActivity extends AppCompatActivity {
         hideShowPostButton = findViewById(R.id.hideShowPostButton);
         postImage = findViewById(R.id.commentsPostImage);
         inputComment = findViewById(R.id.inputComment);
+        inputComment.setMaxHeight(100);
         postTitle = findViewById(R.id.commentsPostTitle);
         postDateAndTime = findViewById(R.id.commentsPostDateAndTime);
         postName = findViewById(R.id.commentsPostName);
         postDescription = findViewById(R.id.commentsPostDescription);
 
         postKey = getIntent().getExtras().get("postKey").toString();
+
+        backButton = findViewById(R.id.commentsBackButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         sendCommentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,8 +140,29 @@ public class CommentsActivity extends AppCompatActivity {
                     if (! profilePicture.equals("-1"))
                         Picasso.get().load(profilePicture).placeholder(R.drawable.ic_baseline_person_60).into(profileImage);
 
-                    String firstName = dataSnapshot.child("firstName").getValue().toString();
-                    String lastName = dataSnapshot.child("lastName").getValue().toString();
+                    final String firstName = dataSnapshot.child("firstName").getValue().toString();
+                    final String lastName = dataSnapshot.child("lastName").getValue().toString();
+
+                    mUsersReference.child(currentUserID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                String firstN = dataSnapshot.child("firstName").getValue().toString();
+                                String lastN = dataSnapshot.child("lastName").getValue().toString();
+
+                                if (firstN.equals(firstName) && lastN.equals(lastName))
+                                    postName.setText("You");
+                                else
+                                    postName.setText(firstName + " " + lastName);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
                     String title = dataSnapshot.child("postTitle").getValue().toString();
                     String date = dataSnapshot.child("date").getValue().toString();
                     String time = dataSnapshot.child("time").getValue().toString();
@@ -141,12 +173,12 @@ public class CommentsActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(CommentsActivity.this, ImageViewerActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             intent.putExtra("URL", image);
                             startActivity(intent);
                         }
                     });
 
-                    postName.setText(firstName + " " + lastName);
                     postTitle.setText(title);
                     postDescription.setText(description);
                     Picasso.get().load(image).placeholder(R.drawable.ic_baseline_image_150).into(postImage);
@@ -169,12 +201,11 @@ public class CommentsActivity extends AppCompatActivity {
                             if (isDateInCurrentWeek(dateFormat.parse(date))) {
                                 Date temp = dateFormat.parse(date);
                                 SimpleDateFormat dateFormat2 = new SimpleDateFormat("EEEE");
-                                postDateAndTime.setText(dateFormat2.format(date) + " at " + time);
+                                postDateAndTime.setText(dateFormat2.format(temp) + " at " + time);
                             }
 
                             else
                                 postDateAndTime.setText(date);
-
                         }
 
                         catch (ParseException e) {
@@ -207,16 +238,6 @@ public class CommentsActivity extends AppCompatActivity {
                     sendCommentButton.setBackground(getResources().getDrawable(R.drawable.round_button));
                     sendCommentButton.setEnabled(true);
                 }
-
-                int height = inputComment.getHeight();
-
-                if (height >= 200) {
-                    inputComment.setHeight(200);
-                    inputComment.setVerticalScrollBarEnabled(true);
-                    inputComment.setMovementMethod(new ScrollingMovementMethod());
-                }
-
-
             }
 
             @Override

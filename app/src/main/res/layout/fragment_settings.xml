@@ -36,36 +36,62 @@
 
     </RelativeLayout>
 
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/settingsHeader"
+        app:cardCornerRadius="25dp"
         android:layout_margin="15dp"
         android:translationZ="25dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cirLogoutButton"
-            android:backgroundTint="@android:color/holo_red_light"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:text="Logout"
-            android:layout_margin="10dp"
-            android:paddingStart="45dp"
-            android:paddingEnd="45dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:layout_gravity="center_horizontal" />
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/personProfileBtn"
-            android:text="Person Profile" />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/personProfileBtn"
+                android:backgroundTint="@android:color/holo_blue_dark"
+                android:text="Person Profile"
+                android:textStyle="bold"
+                android:paddingStart="45dp"
+                android:paddingEnd="45dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_gravity="center_horizontal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cirLogoutButton"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:text="Logout"
+                android:layout_margin="10dp"
+                android:paddingStart="45dp"
+                android:paddingEnd="45dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fabEditPersonProfile"
+        android:backgroundTint="#F50057"
+        android:src="@drawable/ic_baseline_edit_24"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="65dp"
+        android:layout_marginEnd="25dp" />
 
 </RelativeLayout>
